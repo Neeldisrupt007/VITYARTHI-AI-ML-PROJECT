@@ -63,11 +63,11 @@ def add_item():
     storage = input("Storage (fridge/room): ").lower()
 
     if category not in ["milk", "bread", "fruit", "vegetable"]:
-        print("❌ Invalid category!")
+        print(" Invalid category!")
         return
 
     if storage not in ["fridge", "room"]:
-        print("❌ Invalid storage!")
+        print(" Invalid storage!")
         return
 
     purchase_date = datetime.now()
@@ -82,8 +82,8 @@ def add_item():
 
     conn.commit()
 
-    print(f"✅ Item added successfully!")
-    print(f"📅 Predicted expiry in {round(expiry_days)} days")
+    print(f" Item added successfully!")
+    print(f" Predicted expiry in {round(expiry_days)} days")
 
 
 def view_items():
@@ -94,7 +94,7 @@ def view_items():
         print("📭 No items found.")
         return
 
-    print("\n📦 Your Fridge Items:\n")
+    print("\n Your Fridge Items:\n")
 
     for row in rows:
         item_id, name, category, storage, purchase_date, expiry_days = row
@@ -108,7 +108,7 @@ def view_items():
         print(f"⏳ Days left: {days_left}")
 
         if days_left <= 2:
-            print("⚠️ Expiring soon!")
+            print(" Expiring soon!")
 
         print("-" * 35)
 
@@ -119,7 +119,7 @@ def delete_item():
     cursor.execute("DELETE FROM items WHERE id=?", (item_id,))
     conn.commit()
 
-    print("🗑️ Item deleted successfully!")
+    print(" Item deleted successfully!")
 
 
 def suggest_recipes():
@@ -132,11 +132,11 @@ def suggest_recipes():
 
     for recipe, ingredients in recipes.items():
         if all(ingredient in items for ingredient in ingredients):
-            print(f"✅ {recipe}")
+            print(f" {recipe}")
             found = True
 
     if not found:
-        print("❌ No matching recipes found.")
+        print(" No matching recipes found.")
 
 
 def menu():
@@ -159,10 +159,10 @@ def menu():
         elif choice == "4":
             suggest_recipes()
         elif choice == "5":
-            print("👋 Exiting program...")
+            print(" Exiting program...")
             break
         else:
-            print("❌ Invalid choice!")
+            print(" Invalid choice!")
 
 
 # ---------------- RUN PROGRAM ---------------- #
